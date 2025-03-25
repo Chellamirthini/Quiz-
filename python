@@ -1,0 +1,50 @@
+import random
+
+# List of quiz questions and answers
+questions = [
+    {
+        "question": "What is the capital of India?",
+        "options": ["Mumbai", "Delhi", "Chennai", "Kolkata"],
+        "answer": "Delhi"
+    },
+    {
+        "question": "Who wrote 'Pride and Prejudice'?",
+        "options": ["Charles Dickens", "Emily Brontë", "Jane Austen", "Mark Twain"],
+        "answer": "Jane Austen"
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "options": ["Earth", "Venus", "Mars", "Jupiter"],
+        "answer": "Mars"
+    },
+    {
+        "question": "What is the largest mammal in the world?",
+        "options": ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+        "answer": "Blue Whale"
+    }
+]
+
+# Shuffle questions
+random.shuffle(questions)
+
+# Start the quiz
+score = 0
+
+print("\n--- Welcome to the Quiz Game! ---\n")
+for i, q in enumerate(questions):
+    print(f"Question {i + 1}: {q['question']}")
+    for j, option in enumerate(q['options']):
+        print(f"{j + 1}. {option}")
+    
+    try:
+        user_answer = int(input("Choose the correct option (1-4): "))
+        if q['options'][user_answer - 1] == q['answer']:
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is: {q['answer']}\n")
+    except (ValueError, IndexError):
+        print(f"Invalid input. The correct answer is: {q['answer']}\n")
+
+# Display the final score
+print(f"Quiz Over! Your final score is {score}/{len(questions)}.")
